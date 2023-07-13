@@ -10,15 +10,25 @@
   </head>
   <body class="bg-gray-800">
     <main class="h-[100vh] m-auto flex justify-center items-center">
-      <form class="m-auto" >
-        <h1 class="font-bold text-white text-2xl">Importe seu arquivo excel abaixo</h1>
-        <label for="uploadFile" class="flex justify-center items-center text-lg mt-4 text-gray-800 font-bold cursor-pointer rounded-3xl bg-lime-400 h-[50px] leading-none">Fazer upload</label>
+      <form enctype="multipart/form-data" method="POST" class="flex flex-col items-center justify-center m-auto">
+        {% csrf_token %}
+        <h1 class="font-bold text-white text-2xl">
+          Importe seu arquivo excel abaixo
+        </h1>
+        <label
+          for="uploadFile"
+          class="flex justify-center w-full items-center text-lg mt-6 text-gray-800 font-bold cursor-pointer rounded-3xl bg-lime-400 h-[50px] leading-none"
+          >Fazer upload</label
+        >
         <input
+          name="archive"
           id="uploadFile"
           type="file"
           class="hidden"
           value="Escolher arquivo"
         />
+
+        <button class="font-bold bg-gray-800 w-full h-[50px] mt-4 text-lime-500" type="submit">Submeter</button>
       </form>
     </main>
   </body>
