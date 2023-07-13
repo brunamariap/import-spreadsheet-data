@@ -19,10 +19,10 @@ class Kit(models.Model):
 
 class Module(models.Model):
     amount = models.IntegerField()
-    model = models.CharField(30)
+    model = models.CharField(max_length=30)
     unit_Wp_power = models.IntegerField()
     max_overload = models.IntegerField()
-    kWp = models.DecimalField()
+    kWp = models.DecimalField(max_digits=10, decimal_places=4)
 
 class Inverter(models.Model):
     pass
