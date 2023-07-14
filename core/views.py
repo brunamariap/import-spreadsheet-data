@@ -20,20 +20,67 @@ def homePage(request):
         # getting a particular sheet by name out of many sheets
         sheets = wb.sheetnames
 
-        excel_data = list()
         for sheet in sheets:
             worksheet = wb[sheet]
 
-            for row in worksheet.iter_rows():
-                row_data = list()
-                for cell in row:
-                    row_data.append(cell.value)
-                    
-                excel_data.append(row_data)
+            for index, row in enumerate(worksheet.iter_rows()):
+                if index == 0:
+                    continue
+                
+                new_kit = Kit.objects.create(
+                type_kit=sheet,
+                identification=row[0].value,
+                code=row[1].value,
+                price=row[2].value,
+                roof=row[3].value,
+                connection=row[4].value,
 
+                quantity_modules=row[5].value,
+                module_model=row[6].value,
+                module_unit_Wp_power=row[7].value,
 
+                max_overload=row[8].value,
+                kWp=row[9].value,
+
+                inverter_1_quantity=row[10].value,
+                inverter_1_model=row[11].value,
+                inverter_2_quantity=row[12].value,
+                inverter_2_model=row[13].value,
+
+                amount_of_red_cables=row[14].value,
+                model_red_cables=row[15].value,
+                amount_of_black_cables=row[16].value,
+                model_black_cables=row[17].value,
+
+                quantity_pairs_connector=row[18].value,
+                connector_pair_model=row[19].value,
+
+                quantity_stringbox=row[20].value,
+                model_stringbox=row[21].value,
+
+                quantity_structure_1=row[22].value,
+                model_structure_1=row[23].value,
+
+                quantity_structure_2=row[24].value,
+                model_structure_2=row[25].value,
+
+                quantity_structure_3=row[26].value,
+                model_structure_3=row[27].value,
+
+                quantity_structure_4=row[28].value,
+                model_structure_4=row[29].value,
+
+                quantity_structure_5=row[30].value,
+                model_structure_5=row[31].value,
+
+                inverter_brand=row[32].value,
+                module_brand=row[33].value,
+            )
+
+            new_kit.save()
+        # for index, row in enumerate(excel_data):
+        #     print(excel_data[index])
         """ 
-        for index, row in enumerate(excel_data):
             new_kit = Kit.objects.create(
                 type_kit=sheet,
                 identification=excel_data[index][0],
