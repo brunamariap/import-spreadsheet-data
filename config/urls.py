@@ -20,6 +20,8 @@ from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', views.homePage, name='home'),
+    path('home/', views.home_page_view, name='home'),
+    path('kits/', views.KitListView.as_view(), name='kit-list'),
+    path('kits/<int:pk>/', views.KitDetailsView.as_view(), name='kit-details'),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
