@@ -19,7 +19,7 @@
 
                 <div class="rounded-lg border-lime-500 border-none w-fit bg-lime-500">
                     <form action="{% url 'search' %}" method="GET" class="flex">
-                        <input type="search" name="q" class="w-[70vh] rounded-l-lg border-none outline-none"
+                        <input type="search" name="q" value="{{ search_term }}" required class="w-[70vh] rounded-l-lg border-none outline-none"
                             placeholder="Pesquise pelo nome do kit" autocomplete="off">
                         <button type="submit" class="flex items-center p-2">
                             <img class="w-6" src="{% static 'icon/carbon_search.svg' %}" />
@@ -32,7 +32,7 @@
             <section class="flex flex-col gap-4">
                 {% for kit in object_list %}
                 <div class="flex flex-row items-center gap-6">
-                    <p class="text-white text-xl">{{kit}}</p>
+                    <p class="text-white text-xl">{{ kit }}</p>
                     <a href="{% url 'kit-details' kit.id %}">
                         <button class="font-bold text-gray-800 w-fit h-fit mt-4 bg-lime-500 p-2 rounded-xl">Mais
                             informações</button>
@@ -45,7 +45,7 @@
 
                     {% if page_obj.has_previous %}
                     <div>
-                        <a href="?page={{ page_obj.previous_page_number }}"
+                        <a href="?page={{ page_obj.previous_page_number }}&q={{ search_term }}"
                             class="flex flex-row flex-nowrap text-white">
                             <img src="{% static 'icon/carbon_chevron-left-black.svg' %}">
                             Anterior
@@ -55,7 +55,7 @@
 
 
                     {% if page_obj.number == page_obj.paginator.num_pages %}
-                    <a href="?page=1"
+                    <a href="?page=1&q={{ search_term }}"
                         class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all font-bold text-white">1</a>
                     <span class="font-bold text-white">...</span>
                     {% endif %}
@@ -68,17 +68,17 @@
 
                     <div class="text-white font-bold">
                         {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
-                        <a href="?page={{ page_obj.next_page_number }}"
+                        <a href="?page={{ page_obj.next_page_number }}&q={{ search_term }}"
                             class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all">{{ page_obj.next_page_number }}</a>
                         {% endif %}
                         ...
-                        <a href="?page={{ page_obj.paginator.num_pages }}"
+                        <a href="?page={{ page_obj.paginator.num_pages }}&q={{ search_term }}"
                             class="hover:bg-primary-hover py-1 px-2 rounded-full transition-all">{{ page_obj.paginator.num_pages }}</a>
                     </div>
 
                     <div>
 
-                        <a href="?page={{ page_obj.next_page_number }}"
+                        <a href="?page={{ page_obj.next_page_number }}&q={{ search_term }}"
                             class="flex flex-row flex-nowrap items-center text-white">
                             Próxima
                             <img src={% static 'icon/carbon_chevron-right-black.svg' %}>

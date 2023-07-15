@@ -6,6 +6,7 @@ import openpyxl
 from django.db import transaction
 from .models import Kit
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 
 
 def home_page_view(request):
@@ -88,6 +89,7 @@ def home_page_view(request):
 class KitListView(ListView):
     model = Kit
     queryset = Kit.objects.all()
+    allow_empty = True
     template_name = 'list-kits.html'
     paginate_by = 15
 
@@ -96,3 +98,34 @@ class KitDetailsView(DetailView):
     model = Kit
     allow_empty = True
     template_name = 'kit-details.html'
+
+
+def kit_search_view():
+    pass
+
+
+class KitSearchView(ListView):
+    model = Kit
+    template_name = 'search.html'
+    queryset = Kit.objects.all()
+    paginate_by = 15
+
+    def get_queryset(self, *args, **kwargs):
+        search_term = self.request.GET.get('q', '')
+        qs = super().get_queryset(*args, **kwargs)
+        qs = qs.filter(
+            Q(
+                Q(identification__icontains=search_term),
+            )
+        )
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        search_term = self.request.GET.get('q', '')
+
+        context.update({
+            'search_term': search_term,
+        })
+
+        return context
