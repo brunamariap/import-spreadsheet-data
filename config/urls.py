@@ -24,5 +24,6 @@ urlpatterns = [
     path('kits/', views.KitListView.as_view(), name='kit-list'),
     path('kits/<int:pk>/', views.KitDetailsView.as_view(), name='kit-details'),
     path('kits/search/', views.KitSearchView.as_view(), name='search'),
+    path('kits/filter/', views.filter_kits_view, name='filter'),
     path("__reload__/", include("django_browser_reload.urls")),
 ]

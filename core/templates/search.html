@@ -15,7 +15,7 @@
     <body class="bg-gray-800">
         <main class="h-[100vh] mx-10">
             <section class="flex flex-col items-center mb-5 mt-3">
-                <h1 class="font-bold text-white text-2xl mb-5">Lista de kits</h1>
+                <a href="{% url 'kit-list' %}"><h1 class="font-bold text-white text-2xl mb-5">Lista de kits</h1></a>
 
                 <div class="rounded-lg border-lime-500 border-none w-fit bg-lime-500">
                     <form action="{% url 'search' %}" method="GET" class="flex">
@@ -26,18 +26,28 @@
                         </button>
                     </form>
                 </div>
+
+                <a href="{% url 'filter' %}" class="mt-5 self-end">
+                    <button class="p-2 px-5 rounded-xl font-semibold text-white w-fit h-fit flex items-center">Mais
+                        filtros
+                        <img src={% static 'icon/carbon_chevron-right-black.svg' %}>
+                    </button>
+                </a>
             </section>
 
 
             <section class="flex flex-col gap-4">
                 {% for kit in object_list %}
-                <div class="flex flex-row items-center gap-6">
-                    <p class="text-white text-xl">{{ kit }}</p>
+                <div class="flex flex-row items-center gap-6 justify-between">
+                    <p class="text-white text-xl">{{kit}}</p>
                     <a href="{% url 'kit-details' kit.id %}">
                         <button class="font-bold text-gray-800 w-fit h-fit mt-4 bg-lime-500 p-2 rounded-xl">Mais
                             informações</button>
                     </a>
                 </div>
+                <hr>
+                {% empty %}
+                <span class="text-white text-2xl font-semibold self-center mt-5">Nenhuma informação foi encontrada!</span>
                 {% endfor %}
 
                 <div id="paginationContainer" class="flex flex-row gap-2 mt-6 self-center mb-4">
