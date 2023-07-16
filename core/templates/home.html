@@ -1,6 +1,8 @@
+{% load static %}
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     {% tailwind_css %}
 
@@ -8,28 +10,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inicio</title>
   </head>
+
   <body class="bg-gray-800">
-    <main class="h-[100vh] m-auto flex justify-center items-center">
-      <form enctype="multipart/form-data" method="POST" class="flex flex-col items-center justify-center m-auto">
+    <main class="h-[100vh] m-auto flex flex-col justify-center items-center">
+      <form enctype="multipart/form-data" method="POST" class="flex flex-col items-center justify-center">
         {% csrf_token %}
         <h1 class="font-bold text-white text-2xl">
           Importe seu arquivo excel abaixo
         </h1>
-        <label
-          for="uploadFile"
-          class="flex justify-center w-full items-center text-lg mt-6 text-gray-800 font-bold cursor-pointer rounded-3xl bg-lime-400 h-[50px] leading-none"
-          >Fazer upload</label
-        >
-        <input
-          name="archive"
-          id="uploadFile"
-          type="file"
-          class="hidden"
-          value="Escolher arquivo"
-        />
+        <label for="uploadFile"
+          class="flex justify-center w-full items-center text-lg mt-6 text-gray-800 font-bold cursor-pointer rounded-3xl bg-lime-400 h-[50px] leading-none">Fazer
+          upload</label>
+        <input name="archive" id="uploadFile" type="file" class="hidden" value="Escolher arquivo" />
+
 
         <button class="font-bold bg-gray-800 w-full h-[50px] mt-4 text-lime-500" type="submit">Submeter</button>
       </form>
+
+      <a href="{% url 'kit-list' %}" class="mt-20 self-center">
+        <button class="p-2 px-5 rounded-xl font-semibold text-white w-fit h-fit flex items-center">
+          Ver itens adicionados
+          <img src={% static 'icon/carbon_chevron-right-black.svg' %}>
+        </button>
+      </a>
     </main>
   </body>
+
 </html>
