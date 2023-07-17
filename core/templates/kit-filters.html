@@ -46,6 +46,7 @@
                                 <label class="text-white" for="{{form.roof.id_for_label}}">{{form.roof.label}}</label>
                                 {{form.roof}}
                             </div>
+
                         </fieldset>
                         <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
                             <div class="flex flex-col w-1/5">
@@ -62,17 +63,24 @@
                             <div class="flex flex-col w-1/5">
                                 <label class="text-white"
                                     for="{{form.amount_of_red_cables.id_for_label}}">{{form.amount_of_red_cables.label}}</label>
-                                {{form.amount_of_red_cables}}
-                            </div>
+                                    {{form.amount_of_red_cables}}
+                                </div>
 
                             <div class="flex flex-col w-1/5">
                                 <label class="text-white"
-                                    for="{{form.quantity_stringbox.id_for_label}}">{{form.quantity_stringbox.label}}</label>
+                                for="{{form.quantity_stringbox.id_for_label}}">{{form.quantity_stringbox.label}}</label>
                                 {{form.quantity_stringbox}}
                             </div>
                         </fieldset>
-                        <button type="submit"
-                            class="bg-lime-500 p-2 px-4 rounded-xl font-bold text-gray-800 w-fit h-fit self-end">Filtrar</button>
+                        <fieldset class="flex flex-wrap justify-between gap-y-3 mt-2 mb-5">
+                            <div class="flex flex-col w-1/5">
+                                <label class="text-white" for="{{form.order_by.id_for_label}}">{{form.order_by.label}}</label>
+                                {{form.order_by}}
+                            </div>
+
+                            <button type="submit"
+                                class="bg-lime-500 p-2 px-4 rounded-xl font-bold text-gray-800 w-fit h-fit self-end">Filtrar</button>
+                        </fieldset>
                     </form>
                 </div>
             </section>
