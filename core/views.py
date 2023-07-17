@@ -102,11 +102,12 @@ def filter_kits_view(request):
         amount_of_black_cables = request.GET.get('amount_of_black_cables')
         quantity_stringbox = request.GET.get('quantity_stringbox')
         roof = request.GET.get('roof')
+        order_by = request.GET.get('order_by')
 
         kits = Kit.objects.all()
 
         if type_kit:
-            kits = kits.filter(Q(type_kit=type_kit)) 
+            kits = kits.filter(Q(type_kit=type_kit))
 
         if inverter_brand:
             kits = kits.filter(Q(inverter_brand=inverter_brand))
@@ -128,6 +129,12 @@ def filter_kits_view(request):
 
         if quantity_stringbox:
             kits = kits.filter(Q(quantity_stringbox=quantity_stringbox))
+        
+        if order_by:
+            if order_by == 'asc':
+                kits = kits.order_by('price')
+            elif order_by == 'desc':
+                kits = kits.order_by('-price')
 
         context = {
             'object_list': kits,
@@ -143,6 +150,7 @@ class KitListView(ListView):
     allow_empty = True
     template_name = 'list-kits.html'
     paginate_by = 15
+    ordering = ['-price']
 
 
 class KitDetailsView(DetailView):

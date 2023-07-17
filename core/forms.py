@@ -27,6 +27,12 @@ class KitFilterForm(forms.Form):
     TYPES_ROOF_CHOICES = [default_option_selected]
     TYPES_ROOF_CHOICES.extend((x['roof'], x['roof'])
                             for x in types_roof)
+    
+    ORDER_BY_CHOICES = [
+        default_option_selected,
+        ('asc', 'Menor preço'),
+        ('desc', 'Maior preço'),
+    ]
 
     type_kit = forms.ChoiceField(label='Tipo do kit', choices=KIT_TIPES_CHOICES, required=False, widget=forms.Select(
         attrs={
@@ -41,6 +47,10 @@ class KitFilterForm(forms.Form):
             'class': "text-gray rounded-lg px-4",
         }))
     roof = forms.ChoiceField(label='Tipos de telhado', choices=TYPES_ROOF_CHOICES, required=False, widget=forms.Select(
+        attrs={
+            'class': "text-gray rounded-lg px-4",
+        }))
+    order_by = forms.ChoiceField(label='Ordernar por', choices=ORDER_BY_CHOICES, required=False, widget=forms.Select(
         attrs={
             'class': "text-gray rounded-lg px-4",
         }))
