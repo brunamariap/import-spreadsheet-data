@@ -1,0 +1,95 @@
+{% load static %}
+{% load static tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        {% tailwind_css %}
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lista de kit</title>
+    </head>
+
+    <body class="bg-gray-800">
+        <main class="h-[100vh] mx-10 mb-4">
+            <h1 class="font-bold text-white text-2xl mb-3">{{kit}}</h1>
+            <section class="flex flex-col gap-4">
+
+                <div class="text-white text-xl">
+                    <p>Código: {{kit.code}}</p>
+
+                    <p>Preço: R$ {{kit.price}}</p>
+                    <p>Telhado: {{kit.roof}}</p>
+                    <p>Conexão: {{kit.connection}}</p>
+                    <p>Modelo do módulo: {{kit.module_model}}</p>
+                    <p>Quantidade de módulos: {{kit.quantity_modules}}</p>
+                    <p> Potência Wp Unitária Módulo: {{kit.module_unit_Wp_power}}</p>
+                    <p>Overload máximo: {{kit.max_overload}}</p>
+                    <p>kWp: {{kit.kWp}}</p>
+                    <p>Marca do módulo: {{kit.module_brand}}</p>
+                    
+                    <h2 class="mt-3 font-bold text-xl">Inversores</h2>
+                    {% if kit.inverter_1_model %}
+                    <p>Modelo inversor 1: {{kit.inverter_1_model}}</p>
+                    <p>Quantidade inversor 1: {{kit.inverter_1_quantity}}</p>
+                    {% endif %}
+
+                    {% if kit.inverter_2_model %}
+                    <p>Modelo inversor 2: {{kit.inverter_2_model}}</p>
+                    <p>Quantidade inversor 2: {{kit.inverter_2_quantity}}</p>
+                    {% endif %}
+
+                    <p>Marca do inversor: {{kit.inverter_brand}}</p>
+                    
+                    <h2 class="mt-3 font-bold text-xl">Cabos</h2>
+                    <p>Modelo cabo vermelho: {{kit.model_red_cables}}</p>
+                    <p>Quantidade cabo vermelho (m): {{kit.amount_of_red_cables}}</p>
+                    <p>Modelo cabo preto: {{kit.model_black_cables}}</p>
+                    <p>Quantidade cabo preto (m): {{kit.amount_of_black_cables}}</p>
+                    
+                    <h2 class="mt-3 font-bold text-xl">Conectores</h2>
+                    {% if kit.quantity_pairs_connector %}
+                    <p>Modelo par conector: {{kit.connector_pair_model}}</p>
+                    <p>Quantidade pares conectores: {{kit.quantity_pairs_connector}}</p>
+                    {% endif %}
+
+                    <h2 class="mt-3 font-bold text-xl">Stringbox</h2>                    
+                    {% if kit.model_stringbox %}
+                    <p>Modelo stringbox: {{kit.model_stringbox}}</p>
+                    <p>Quantidade stringbox: {{kit.quantity_stringbox}}</p>
+                    {% endif %}
+                    
+                    <h2 class="mt-3 font-bold text-xl">Estruturas</h2>
+                    {% if kit.quantity_structure_1 %}
+                    <p>Modelo estrutura 1: {{kit.model_structure_1}}</p>
+                    <p>Quantidade estrutura 1: {{kit.quantity_structure_1}}</p>
+                    {% endif %}
+
+                    {% if kit.quantity_structure_2 %}
+                    <p>Modelo estrutura 2: {{kit.model_structure_2}}</p>
+                    <p>Quantidade estrutura 2: {{kit.quantity_structure_2}}</p>
+                    {% endif %}
+
+                    {% if kit.quantity_structure_3 %}
+                    <p>Modelo estrutura 3: {{kit.model_structure_3}}</p>
+                    <p>Quantidade estrutura 3: {{kit.quantity_structure_3}}</p>
+                    {% endif %}
+
+                    {% if kit.quantity_structure_4 %}
+                    <p>Modelo estrutura 4: {{kit.model_structure_4}}</p>
+                    <p>Quantidade estrutura 4: {{kit.quantity_structure_4}}</p>
+                    {% endif %}
+
+                    {% if kit.quantity_structure_5 %}
+                    <p>Modelo estrutura 5: {{kit.model_structure_5}}</p>
+                    <p>Quantidade estrutura 5: {{kit.quantity_structure_5}}</p>
+                    {% endif %}
+                    <br>
+                </div>
+            </section>
+        </main>
+    </body>
+
+</html>
